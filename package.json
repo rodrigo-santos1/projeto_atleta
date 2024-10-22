@@ -6,12 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "git-commit-msg-linter": "^5.0.8",
     "lucide-react": "^0.453.0",
     "next": "14.2.15",
     "react": "^18",
@@ -25,7 +27,12 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
+    "husky": "^9.1.6",
+    "lint": "^0.8.19",
     "postcss": "^8",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "staged": "^0.0.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
