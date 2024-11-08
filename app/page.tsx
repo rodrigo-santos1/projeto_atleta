@@ -1,15 +1,23 @@
-import { Button } from "@/components/ui/button";
+"use client";
 
-const Home = () => {
-  const name = "";
-  console.log(name);
+import BannerPrincipal from "@/components/bannerprincipal/page";
+import Footer from "@/components/footer/page";
+import Header from "@/components/header/page";
+import SectionAcademia from "@/components/sectionacademia/page";
+import SectionFutebol from "@/components/sectionfutebol/page";
+import SectionNatacao from "@/components/sectionnatacao/page";
+import SectionRa from "@/components/sectionRa/page";
+
+export default function Home() {
   return (
-    <div>
-      <h1>Home</h1>
-      <div className="mx-7 bg-red-400 p-5 text-3xl text-white">banner</div>
-      <Button className="mx- bg-red-500 p-6">Botão</Button>
-    </div>
+    <>
+      <Header />
+      <BannerPrincipal />
+      <SectionFutebol />
+      <SectionNatacao />
+      <SectionAcademia />
+      <SectionRa />
+      <Footer />
+    </>
   );
-};
-
-export default Home;
+}
