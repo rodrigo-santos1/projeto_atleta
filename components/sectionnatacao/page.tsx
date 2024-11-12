@@ -1,6 +1,6 @@
 const SectionNatacao = () => {
   return (
-    <section className="ml-72 mt-14">
+    <section className="ml-72 mt-20">
       <div className="flex items-center justify-center">
         <div
           className="novidades-flex relative mb-20 h-96 w-[1000px] bg-cover bg-center p-14"
@@ -28,7 +28,7 @@ const SectionNatacao = () => {
           </p>
         </div>
         <div
-          className="mb-20 h-96 w-[500px] bg-cover bg-center"
+          className="mb-20 h-96 w-[500px] bg-cover bg-center shadow-lg shadow-[#39D5FF]"
           style={{ backgroundImage: "url('/assets/natacao.jpg')" }}
         ></div>
       </div>

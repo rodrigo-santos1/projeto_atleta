@@ -4,21 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CheckoutPage = () => {
-  const [quantity, setQuantity] = useState(1); // Controle de quantidade do produto
+  const [quantity, setQuantity] = useState(1); 
 
-  // Função para aumentar a quantidade
+  //aumentar a quantidade
   const handleIncrease = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
   };
 
-  // Função para diminuir a quantidade, sem permitir valores abaixo de 1
+ 
   const handleDecrease = () => {
     if (quantity > 1) {
       setQuantity((prevQuantity) => prevQuantity - 1);
     }
   };
 
-  // Cálculo do preço total (preço do produto + frete)
+  // preço total
   const price = 30.0;
   const shipping = 10.0;
   const total = price * quantity + shipping;

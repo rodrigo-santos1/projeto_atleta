@@ -50,7 +50,7 @@ const ResetPasswordPage = () => {
               required
             />
           </div>
-          <div className="mt-4 flex flex-col">
+          <div className="mt-4 mb-5 flex flex-col">
             <label>Confirma Senha:</label>
             <input
               className="w-full rounded-3xl bg-gray-500 p-2 font-sans text-white focus:outline-none focus:ring-2 focus:ring-white"
@@ -64,13 +64,13 @@ const ResetPasswordPage = () => {
         </div>
         <button
           type="submit"
-          className="mt-4 w-full rounded-3xl bg-blue-500 py-2 text-white"
+          className=" w-full menu-li py-2"
         >
           Redefinir Senha
         </button>
         <Link
           href={"/login"}
-          className="custom-button mt-4 block w-full rounded-3xl bg-blue-500 py-2 text-center text-white"
+          className=" w-full menu-li py-2 "
         >
           Voltar para Login
         </Link>

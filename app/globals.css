@@ -25,11 +25,21 @@
     --radius: 0.5rem;
   }
 
+
+
+    .menu-li {
+      @apply rounded-2xl pr-3 border-y-2 shadow-lg hover:shadow-[#39d4ff2f] border-transparent hover:text-[#FFFFFF] bg-[#1b402c] hover:border-[#39D5FF] pl-3 m-0 items-center mb-2 justify-center text-[#39D5FF] flex transition duration-300;
+  
+    }
+
+    
+
 @layer base {
   * {
     @apply box-border;
   }
   body {
-    @apply text-foreground antialiased;
+    @apply bg-[#080F1A] text-foreground;
+    
   }
 }

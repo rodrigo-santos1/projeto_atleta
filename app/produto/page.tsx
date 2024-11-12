@@ -5,13 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CheckoutPage = () => {
-  const [paymentMethod, setPaymentMethod] = useState(null); // Controle de método de pagamento
+  const [paymentMethod, setPaymentMethod] = useState(null); 
 
   const handlePaymentChange = (method) => {
     if (paymentMethod === method) {
-      setPaymentMethod(null); // Se já estiver selecionado, fecha
+      setPaymentMethod(null); 
     } else {
-      setPaymentMethod(method); // Caso contrário, abre o método escolhido
+      setPaymentMethod(method); 
     }
   };
 
@@ -44,13 +44,13 @@ const CheckoutPage = () => {
           </div>
         </div>
 
-        {/* Informações de pagamento */}
+        
         <div className="mb-8">
           <h2 className="mb-4 text-xl font-semibold text-gray-800">
             Forma de Pagamento
           </h2>
           <div className="space-y-4">
-            {/* Cartão de Crédito */}
+            {/* Cartão */}
             <div className="flex items-center space-x-2">
               <input
                 type="radio"
@@ -128,7 +128,7 @@ const CheckoutPage = () => {
           </div>
         </div>
 
-        {/* Botão de Confirmação */}
+        {/* Botão confirma */}
         <div className="mt-6 flex justify-center space-x-4">
           <Link href="/pagamento" className="menu-li px-6 py-2 sm:w-auto">
             Voltar

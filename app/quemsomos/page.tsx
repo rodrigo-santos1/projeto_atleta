@@ -13,13 +13,13 @@ const AboutUs = () => {
             height={160}
           />
         </div>
-        {/* Título da página */}
+        {/* Título */}
         <h1 className="mb-8 py-6 text-center text-4xl font-bold text-[#39d5ff]">
           Quem Somos
         </h1>
 
         <div className="border-t border-gray-600 px-2">
-          {/* Seção de Introdução */}
+          
           <div className="flex flex-col items-center py-4">
             <div className="my-4 h-6 w-32"></div>
             <p className="text-lg leading-relaxed">

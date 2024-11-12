@@ -35,9 +35,17 @@ const LoginPage = () => {
               </Link>
             </div>
             <div>
-              <Link className="menu-li w-full py-2" type="submit" href={"/"}>
+              <Link className="menu-li w-full mt-4 py-2" type="submit" href={"/"}>
                 Entrar
               </Link>
+            </div>
+            <div className="row ">
+            <Link
+              href={"/"}
+              className="menu-li mt-4 py-2 block text-center text-white"
+            >
+              Voltar
+            </Link>
             </div>
           </form>
           <p className="mt-4 text-center text-gray-400">

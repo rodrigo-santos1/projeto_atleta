@@ -1,25 +1,51 @@
-const BannerPrincipal = () => {
+import React from "react";
+
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+export function BannerPrincipal() {
+  const images = [
+    "/nike1.jpeg",
+    "/nike2.jpeg",
+    "/nike3.jpeg",
+    "/nike4.jpeg",
+    "/nike5.jpeg",
+    "/nike6.jpeg",
+    "/nike7.jpeg"
+  ];
+
   return (
-    <section className="w-full">
-      <div className="relative w-full">
-        <div className="absolute top-0 z-20 flex h-48 w-full items-center justify-center bg-gradient-to-tl from-[#080F1A] via-[#080F1A]/70 to-transparent text-white">
-          <h1 className="mt-28 font-serif text-3xl">Atleta Digital</h1>
-        </div>
-        <div className="relative w-full" style={{ height: "800px" }}>
-          <video
-            className="absolute left-0 top-0 h-full w-full object-cover"
-            autoPlay
-            loop
-            muted
-          >
-            <source src="/videos/xlarge.mp4" type="video/mp4" />
-            Seu navegador não suporta o elemento de vídeo.
-          </video>
-        </div>
-        <div className="absolute bottom-0 h-1/6 w-full bg-gradient-to-t from-[#080F1A] via-[#080F1A]/80 to-transparent"></div>
-      </div>
+    <section className="relative mb-10 bottom-3 flex w-full items-center justify-center space-y-reverse">
+      <Carousel className="w-full max-w-xs">
+        <CarouselContent>
+          {images.map((src, index) => (
+            <CarouselItem key={index} className="flex">
+              <div className="p-1">
+                <Card>
+                  <CardContent className="flex aspect-square items-center justify-center  p-6">
+                    <img
+                      src={src}
+                      alt={`Image ${index + 1}`}
+                      className="object-cover "
+                      style={{ width: "100%", height: "100%" }}
+                    />
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
     </section>
   );
-};
+}
 
 export default BannerPrincipal;

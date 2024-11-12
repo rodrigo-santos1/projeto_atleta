@@ -1,9 +1,9 @@
 const SectionAcademia = () => {
   return (
-    <section className="mr-72 mt-14">
+    <section className="mr-72 ">
       <div className="flex items-center justify-center">
         <div
-          className="mb-20 h-96 w-[500px] bg-cover bg-center"
+          className="mb-20 h-96 w-[500px] bg-cover bg-center shadow-lg shadow-[#39D5FF]"
           style={{ backgroundImage: "url('/assets/musculacao.jpg')" }}
         ></div>
         <div

@@ -42,20 +42,6 @@ input {
   border-radius: 4px;
 }
 
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
 .custom-button {
   width: 100%; /* Ou outra largura desejada */
   padding: 1rem; /* Ajuste conforme necessário */

@@ -15,9 +15,7 @@ h2 {
   color: #39d5ff;
 }
 
-input {
-  transition: border-color 0.3s;
-}
+
 
 input:focus {
   border-color: #39d5ff;
