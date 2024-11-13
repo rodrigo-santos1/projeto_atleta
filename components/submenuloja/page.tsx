@@ -1,6 +1,6 @@
 const SubMenuLoja = () => {
   return (
-    <>
+    <nav>
       <ul className="flex-col">
         <li className="menu-li p-auto">
           <a href="/quemsomos" className="block h-full w-full">
@@ -28,7 +28,7 @@ const SubMenuLoja = () => {
           </a>
         </li>
       </ul>
-    </>
+    </nav>
   );
 };
 

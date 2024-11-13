@@ -1,4 +1,5 @@
 import * as React from "react";
+import Autoplay from "embla-carousel-autoplay";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import { Card, CardContent } from "../ui/card";
 
@@ -20,10 +21,17 @@ const Carousell = () => {
     "../nike7.jpeg",
   ];
 
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: false }),
+  );
+
   return (
     <div className="relative flex w-full items-center justify-center">
-      <Carousel       
+      <Carousel
+        plugins={[plugin.current]}
         className="w-full max-w-full"
+        onMouseEnter={() => plugin.current.stop()}
+        onMouseLeave={() => plugin.current.reset()}
       >
         <CarouselContent className="flex items-center justify-center space-x-4">
           {images.map((src, index) => (
@@ -32,13 +40,13 @@ const Carousell = () => {
                 <Card className="bg-transparent">
                   <CardContent
                     className="flex items-center justify-center bg-transparent p-0"
-                    style={{ width: "300px", height: "400px" }}
+                    style={{ width: "390px", height: "400px" }} // Aumentando a largura em 30%
                   >
                     <img
                       src={src}
                       alt={`Image ${index + 1}`}
-                      className="object-cover"
-                      style={{ width: "300px", height: "400px" }}
+                      className="rounded-lg object-cover"
+                      style={{ width: "390px", height: "400px" }} // Aumentando a largura em 30%
                     />
                   </CardContent>
                 </Card>
@@ -47,9 +55,7 @@ const Carousell = () => {
           ))}
         </CarouselContent>
       </Carousel>
-      
     </div>
-
   );
 };
 
