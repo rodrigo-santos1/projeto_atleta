@@ -3,7 +3,7 @@ const SectionNatacao = () => {
     <section className="ml-72 mt-20">
       <div className="flex items-center justify-center">
         <div
-          className="novidades-flex relative mb-20 h-96 w-[1000px] bg-cover bg-center p-14"
+          className="novidades-flex relative mb-20 h-96 w-[1000px] bg-cover bg-center p-14 shadow-lg shadow-[#39D5FF]"
           style={{ backgroundImage: "url('/assets/nadador.jpg')" }}
         >
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -23,12 +23,12 @@ const SectionNatacao = () => {
               vitória!
             </p>
           </div>
-          <p className="absolute bottom-4 left-4 z-10 text-2xl font-bold">
+          <p className="absolute bottom-4 left-4 z-10 text-2xl font-bold text-white">
             Natação
           </p>
         </div>
         <div
-          className="mb-20 h-96 w-[500px] bg-cover bg-center shadow-lg shadow-[#39D5FF]"
+          className="mb-20 h-96 w-[500px] bg-cover bg-center"
           style={{ backgroundImage: "url('/assets/natacao.jpg')" }}
         ></div>
       </div>

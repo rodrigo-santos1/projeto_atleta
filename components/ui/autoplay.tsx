@@ -5,7 +5,7 @@ export function Example() {
     <Carousel
       plugins={[
         Autoplay({
-          delay: 2000,
+          delay: 1000,
         }),
       ]}
     >

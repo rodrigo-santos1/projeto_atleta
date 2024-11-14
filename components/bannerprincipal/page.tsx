@@ -14,7 +14,7 @@ export function BannerPrincipal() {
     "/nike7.jpeg",
   ];
 
-  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: false }));
+  const plugin = useRef(Autoplay({ delay: 1000, stopOnInteraction: false }));
 
   return (
     <section className="relative bottom-3 mb-10 flex w-full items-center justify-center space-y-reverse">

@@ -1,14 +1,14 @@
 const SectionRa = () => {
   return (
-    <section className="ml-72 ">
+    <section className="ml-72">
       <div className="flex items-center justify-center">
         <div
-          className="novidades-flex relative mb-20 h-96 w-[1000px] bg-cover bg-center p-14"
+          className="novidades-flex relative mb-20 h-96 w-[1000px] bg-cover bg-center p-14 shadow-lg shadow-[#39D5FF]"
           style={{ backgroundImage: "url('/assets/metaverso.jpg')" }}
         >
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
           <div className="text-shadow-lg relative z-10 text-white text-opacity-100">
-            <h1 className="text-4xl font-bold">
+            <h1 className="text-4xl font-bold ">
               Descubra a Realidade Aumentada
             </h1>
             <p className="mt-10">
@@ -21,10 +21,10 @@ const SectionRa = () => {
               industriais.
             </p>
           </div>
-          <p className="absolute bottom-4 left-4 z-10 text-2xl font-bold">RA</p>
+          <p className="absolute bottom-4 left-4 z-10 text-2xl font-bold text-white">RA</p>
         </div>
         <div
-          className="mb-20 h-96 w-[500px] bg-cover bg-center shadow-lg shadow-[#39D5FF]"
+          className="mb-20 h-96 w-[500px] bg-cover bg-center"
           style={{ backgroundImage: "url('/assets/metaverso.jpg')" }}
         ></div>
       </div>

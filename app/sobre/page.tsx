@@ -24,35 +24,40 @@ const Sobre = () => {
               <div className="my-4 h-6 w-32"></div>
               <p className="text-lg leading-relaxed">
                 <strong>
-                  Bem-vindo à Atleta Digital, onde a inovação e o estilo se
-                  encontram! Somos uma loja online especializada em roupas,
-                  acessórios e jogos de realidade aumentada voltados para
-                  academia, natação e musculação. Nossa missão é proporcionar a
-                  melhor experiência de compra para nossos clientes, oferecendo
-                  produtos de alta qualidade que combinam tecnologia e moda.
+                  Bem-vindo à Atleta Digital, a sua loja online especializada em
+                  produtos de alta qualidade para atletas de todos os níveis.
+                  Aqui, nossa missão é proporcionar a melhor experiência de
+                  compra, oferecendo um catálogo de produtos cuidadosamente
+                  selecionados para atender às suas necessidades esportivas.
                 </strong>
               </p>
-              <p className="py-4 text-lg leading-relaxed">
-                <strong>Nossa Missão:</strong> Acreditamos que a prática
-                esportiva deve ser acessível, divertida e estilosa. Por isso,
-                selecionamos cuidadosamente cada item do nosso catálogo para
-                garantir que você tenha o melhor desempenho, seja na academia,
-                na piscina ou no seu treino de musculação. Estamos na vanguarda
-                da tecnologia com nossos jogos de realidade aumentada, que
-                transformam sua rotina de exercícios em uma experiência imersiva
-                e interativa. Com a realidade aumentada, você pode visualizar e
-                experimentar nossos produtos de uma maneira totalmente nova,
-                diretamente do conforto da sua casa.
+              <p className="py-2 text-lg leading-relaxed">
+                <strong>
+                  Desde de 2024, trabalhamos com marcas renomadas e de confiança
+                  para garantir que cada item disponível em nossa loja ofereça o
+                  melhor em performance, conforto e durabilidade. Nosso
+                  compromisso é com a qualidade e com a sua satisfação, por
+                  isso, nossa equipe está sempre disponível para ajudá-lo com
+                  qualquer dúvida ou necessidade.
+                </strong>
               </p>
-              <p className="py-4 text-lg leading-relaxed">
-                <strong>Qualidade e Confiança:</strong> Nosso compromisso é com
-                a qualidade e a satisfação dos nossos clientes. Trabalhamos com
-                as melhores marcas e fornecedores para garantir que você receba
-                produtos duráveis, confortáveis e com ótimo custo-benefício.
-                Somos uma equipe apaixonada por esportes e tecnologia, dedicada
-                a oferecer um atendimento personalizado e eficiente. Estamos
-                sempre prontos para ajudar você a encontrar o produto ideal e
-                tirar qualquer dúvida.
+              <p className="py-2 text-lg leading-relaxed">
+                <strong>
+                  Além disso, acreditamos em um atendimento personalizado, com
+                  preços acessíveis e entrega rápida, para que você possa se
+                  concentrar no que realmente importa: o seu desempenho como um
+                  atleta profissional ou para somente poder praticar atividades
+                  físicas. Nossos Valores: Qualidade e Confiabilidade;
+                  Atendimento ao Cliente de Excelência; Preços Acessíveis para
+                  Todos; Compromisso com a Sustentabilidade.
+                </strong>
+              </p>
+              <p className="py-2 text-lg leading-relaxed">
+                <strong>
+                  Junte-se a nós e faça parte da nossa comunidade de atletas
+                  apaixonados por esportes. Aqui na Atleta Digital, seu
+                  desempenho é nossa prioridade!
+                </strong>
               </p>
             </div>
           </div>
