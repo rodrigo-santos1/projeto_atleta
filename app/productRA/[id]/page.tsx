@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { ARProduct, arProducts } from "@/data/productRA"; // Atualizado para usar ARProducts
+import { ARProduct, arProducts } from "@/data/Ra.ts/data"; // Atualizado para usar ARProducts
 import {
   Heart,
   ShoppingCart,
