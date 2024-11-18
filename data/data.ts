@@ -17,8 +17,7 @@ export const products: Product[] = [
     subcategory: "Camisas",
     price: 89.99,
     image: "/assets/camisafut.jpg",
-    description:
-      "Óculos de realidade virtual com fone de ouvido VR compatível com telefone/Android, Ideia de presente Óculos 3D VR com controlador para jogos de filmes",
+    description: "Camisa oficial de treino prolongada",
   },
   {
     id: "2",
