@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { products, Product } from "@/data/data";
+import { products, Product } from "@/data/academia.ts/data"; // Certifique-se de que o caminho do seu arquivo está correto
 import { Heart, ShoppingCart, User, Home } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -111,7 +111,7 @@ export default function ProductPage() {
       <div
         className="mb-6 flex h-[450px] w-full items-center justify-center bg-[#2a5c40]"
         style={{
-          backgroundImage: "url('/assets/futebol.jpg')",
+          backgroundImage: "url('/assets/ac01.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -123,7 +123,7 @@ export default function ProductPage() {
             <Link href="/" className="mr-2">
               <Home className="h-8 w-8 text-[#39D5FF]" />
             </Link>
-            <h1 className="text-3xl font-bold text-white">Futebol</h1>
+            <h1 className="text-3xl font-bold text-white">Academia</h1>
           </div>
           <div className="flex items-center space-x-4">
             <Input
@@ -271,7 +271,7 @@ export default function ProductPage() {
                           height={300}
                           objectFit="cover"
                           className="mb-4 rounded-lg"
-                          style={{ width: "300px", height: "300px" }} // Adicionando estilo fixo
+                          style={{ width: "300px", height: "300px" }}
                         />
                         <Button
                           variant="outline"

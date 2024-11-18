@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { products, Product } from "@/data/data";
+import { ARProduct, arProducts } from "@/data/Ra.ts/data"; // Importa os dados corretos
 import { Heart, ShoppingCart, User, Home } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -54,7 +54,7 @@ export default function ProductPage() {
     setFavorites(storedFavorites);
   }, []);
 
-  const filteredProducts = products
+  const filteredProducts = arProducts
     .filter((product) => category === "todos" || product.category === category)
     .filter(
       (product) =>
@@ -70,10 +70,15 @@ export default function ProductPage() {
     return 0;
   });
 
-  const categories = ["Masculino", "Feminino", "Infantil"];
-  const subcategories = ["Camisas", "Calçados", "Acessórios"];
+  const categories = ["Eletrônicos", "Jogos", "Acessórios"]; // Atualizando categorias para refletir o banco de dados
+  const subcategories = [
+    "Óculos VR",
+    "Consoles",
+    "Controladores",
+    "Outros", // Subcategorias de AR
+  ];
 
-  const addToCart = (product: Product) => {
+  const addToCart = (product: ARProduct) => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     const existingProduct = cart.find((item: any) => item.id === product.id);
 
@@ -111,7 +116,7 @@ export default function ProductPage() {
       <div
         className="mb-6 flex h-[450px] w-full items-center justify-center bg-[#2a5c40]"
         style={{
-          backgroundImage: "url('/assets/futebol.jpg')",
+          backgroundImage: "url('/assets/bannerra.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -123,7 +128,9 @@ export default function ProductPage() {
             <Link href="/" className="mr-2">
               <Home className="h-8 w-8 text-[#39D5FF]" />
             </Link>
-            <h1 className="text-3xl font-bold text-white">Futebol</h1>
+            <h1 className="text-3xl font-bold text-white">
+              Realidade Aumentada
+            </h1>
           </div>
           <div className="flex items-center space-x-4">
             <Input
@@ -253,7 +260,7 @@ export default function ProductPage() {
             </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {sortedProducts.map((product: Product) => (
+              {sortedProducts.map((product: ARProduct) => (
                 <Card
                   key={product.id}
                   className="m-0 mb-2 rounded-md border-y-2 border-transparent bg-[#2a5c40] text-[#39D5FF] shadow-lg transition duration-300 hover:border-[#39D5FF] hover:text-[#FFFFFF] hover:shadow-[#39d4ff2f]"
@@ -271,7 +278,7 @@ export default function ProductPage() {
                           height={300}
                           objectFit="cover"
                           className="mb-4 rounded-lg"
-                          style={{ width: "300px", height: "300px" }} // Adicionando estilo fixo
+                          style={{ width: "300px", height: "300px" }}
                         />
                         <Button
                           variant="outline"

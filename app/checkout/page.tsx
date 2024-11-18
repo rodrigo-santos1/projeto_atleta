@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
 import Link from "next/link";
 // import Image from 'next/image'
-import Footer from "@/components/footer/page";
 
 interface CartItem extends Product {
   quantity: number;
@@ -165,18 +164,18 @@ export default function CheckoutPage() {
                     className="bg-[#1b402c] text-[#39D5FF]"
                   />
                 </div>
-                <Button
+                <Link
                   type="submit"
+                  href={"/pagamento"}
                   className="m-0 flex w-full items-center justify-center rounded-2xl border-y-2 border-transparent bg-[#39D5FF] pl-3 pr-3 text-[#080F1A] shadow-lg transition duration-300 hover:border-[#39D5FF] hover:bg-[#2D9BC7] hover:text-[#FFFFFF] hover:shadow-[#39d4ff2f]"
                 >
                   Finalizar Compra
-                </Button>
+                </Link>
               </form>
             </CardContent>
           </Card>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

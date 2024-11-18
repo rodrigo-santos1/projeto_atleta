@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { products, Product } from "@/data/data";
+import { products, Product } from "@/data/natacao.ts/data";
 import { Heart, ShoppingCart, User, Home } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -111,7 +111,7 @@ export default function ProductPage() {
       <div
         className="mb-6 flex h-[450px] w-full items-center justify-center bg-[#2a5c40]"
         style={{
-          backgroundImage: "url('/assets/futebol.jpg')",
+          backgroundImage: "url('/assets/na.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -123,7 +123,7 @@ export default function ProductPage() {
             <Link href="/" className="mr-2">
               <Home className="h-8 w-8 text-[#39D5FF]" />
             </Link>
-            <h1 className="text-3xl font-bold text-white">Futebol</h1>
+            <h1 className="text-3xl font-bold text-white">Natação</h1>
           </div>
           <div className="flex items-center space-x-4">
             <Input

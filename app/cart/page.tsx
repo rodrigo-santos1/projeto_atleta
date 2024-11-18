@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
-import Footer from "@/components/footer/page";
+
 
 interface CartItem extends Product {
   quantity: number;
@@ -219,7 +219,6 @@ export default function CartPage() {
           </CardFooter>
         </Card>
       </div>
-      <Footer />
     </div>
   );
 }

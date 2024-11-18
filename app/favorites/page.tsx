@@ -21,7 +21,6 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { products, Product } from "@/data/data";
-import Footer from "@/components/footer/page";
 
 export default function FavoritesPage() {
   const router = useRouter();
@@ -144,9 +143,10 @@ export default function FavoritesPage() {
                             src={product.image}
                             alt={product.name}
                             width={300}
-                            height={200}
+                            height={300}
                             objectFit="cover"
                             className="mb-4 rounded-lg"
+                            style={{ width: "300px", height: "300px" }}
                           />
                         </div>
                         <p className="mb-2 text-sm">{product.description}</p>
@@ -189,7 +189,6 @@ export default function FavoritesPage() {
           </CardContent>
         </Card>
       </div>
-      <Footer />
     </div>
   );
 }
