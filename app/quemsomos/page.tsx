@@ -8,7 +8,7 @@ const AboutUs = () => {
         <div className="flex h-40 flex-col items-center">
           <Image
             src="/logooficial.png"
-            alt="Logo Oficial"
+            alt="logo"
             width={160}
             height={160}
           />
