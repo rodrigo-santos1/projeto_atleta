@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 const MenuPageFutebol = () => {
   // Estado para gerenciar a categoria selecionada e o submenu
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedSection, setSelectedSection] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedSection, setSelectedSection] = useState<string | null>(null);
 
   // Função para alternar a visibilidade dos submenus
-  const toggleCategory = (category) => {
+  const toggleCategory = (category: string | null) => {
     setSelectedCategory(selectedCategory === category ? null : category);
   };
 
-  const toggleSection = (section) => {
+  const toggleSection = (section: string | null) => {
     setSelectedSection(selectedSection === section ? null : section);
   };
 
