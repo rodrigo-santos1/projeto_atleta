@@ -29,8 +29,8 @@ const RegistrationPage = () => {
     cep: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = () => {
+    const { name, value } = (e.target as HTMLInputElement);
     setFormData({ ...formData, [name]: value });
   };
 
