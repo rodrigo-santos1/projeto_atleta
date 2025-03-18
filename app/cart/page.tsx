@@ -39,7 +39,7 @@ export default function CartPage() {
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCartItems(cart);
-    setCartCount(cart.reduce((total, item) => total + item.quantity, 0));
+    setCartCount(cart.reduce((total: any, item: { quantity: any; }) => total + item.quantity, 0));
 
     const storedFavorites = JSON.parse(
       localStorage.getItem("favorites") || "[]",
