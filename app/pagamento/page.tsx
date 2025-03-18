@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 const CheckoutPage = () => {
-  const [paymentMethod, setPaymentMethod] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
 
-  const handlePaymentChange = (method) => {
+  const handlePaymentChange = (method: string) => {
     if (paymentMethod === method) {
       setPaymentMethod(null);
     } else {
