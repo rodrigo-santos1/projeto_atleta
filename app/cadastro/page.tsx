@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import "./style.css"; // Importa o CSS
 import Link from "next/link";
 import Image from "next/image";
-import InputMask from "react-input-mask"; // Importa a biblioteca para máscara
+import InputMask from "react-input-mask";
 
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({
