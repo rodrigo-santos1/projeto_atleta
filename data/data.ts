@@ -1,4 +1,6 @@
 export interface Product {
+  idealFor: ReactNode;
+  material: ReactNode;
   id: string;
   name: string;
   category: "Masculino" | "Feminino" | "Infantil";
