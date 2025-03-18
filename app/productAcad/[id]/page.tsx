@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { Product, products } from "@/data/productAcad"; 
 import {
   Heart,
   ShoppingCart,
@@ -18,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
+import { Product, products } from "@/data/data";
 
 export default function ProductDetailPage() {
   const params = useParams();
