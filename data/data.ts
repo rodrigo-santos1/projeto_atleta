@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface Product {
   idealFor: ReactNode;
   material: ReactNode;
@@ -20,6 +22,8 @@ export const products: Product[] = [
     price: 89.99,
     image: "/assets/camisafut.jpg",
     description: "Camisa oficial de treino prolongada",
+    idealFor: undefined,
+    material: undefined
   },
   {
     id: "2",
@@ -29,6 +33,8 @@ export const products: Product[] = [
     price: 199.99,
     image: "/assets/chuteira.jpg",
     description: "Chuteira de campo masculina com ótima aderência e conforto.",
+    idealFor: undefined,
+    material: undefined
   },
   {
     id: "3",
@@ -37,8 +43,9 @@ export const products: Product[] = [
     subcategory: "Acessórios",
     price: 29.99,
     image: "/assets/meias.jpg",
-    description:
-      "Meias de futebol masculinas com proteção extra para os tornozelos.",
+    description: "Meias de futebol masculinas com proteção extra para os tornozelos.",
+    idealFor: undefined,
+    material: undefined
   },
   // Feminino
   {
@@ -48,8 +55,9 @@ export const products: Product[] = [
     subcategory: "Camisas",
     price: 99.99,
     image: "/assets/vasco.webp",
-    description:
-      "Camisa oficial de jogo feminina com tecnologia de absorção de suor.",
+    description: "Camisa oficial de jogo feminina com tecnologia de absorção de suor.",
+    idealFor: undefined,
+    material: undefined
   },
   {
     id: "5",
@@ -58,8 +66,9 @@ export const products: Product[] = [
     subcategory: "Calçados",
     price: 179.99,
     image: "/assets/feminino.webp",
-    description:
-      "Chuteira feminina para gramado com travas de alta performance.",
+    description: "Chuteira feminina para gramado com travas de alta performance.",
+    idealFor: undefined,
+    material: undefined
   },
   {
     id: "6",
@@ -69,6 +78,8 @@ export const products: Product[] = [
     price: 89.99,
     image: "/assets/luvas.webp",
     description: "Luvas de goleiro femininas com aderência superior.",
+    idealFor: undefined,
+    material: undefined
   },
   // Infantil
   {
@@ -78,8 +89,9 @@ export const products: Product[] = [
     subcategory: "Camisas",
     price: 69.99,
     image: "/assets/infantill.jpg",
-    description:
-      "Camisa oficial de jogo infantil, réplica do uniforme profissional.",
+    description: "Camisa oficial de jogo infantil, réplica do uniforme profissional.",
+    idealFor: undefined,
+    material: undefined
   },
   {
     id: "8",
@@ -88,8 +100,9 @@ export const products: Product[] = [
     subcategory: "Calçados",
     price: 129.99,
     image: "/assets/futsal.webp",
-    description:
-      "Tênis de futsal infantil com sola aderente para quadras indoor.",
+    description: "Tênis de futsal infantil com sola aderente para quadras indoor.",
+    idealFor: undefined,
+    material: undefined
   },
   {
     id: "9",
@@ -98,7 +111,8 @@ export const products: Product[] = [
     subcategory: "Acessórios",
     price: 39.99,
     image: "/assets/canela.webp",
-    description:
-      "Caneleira infantil leve e resistente para proteção durante o jogo.",
+    description: "Caneleira infantil leve e resistente para proteção durante o jogo.",
+    idealFor: undefined,
+    material: undefined
   },
 ];
