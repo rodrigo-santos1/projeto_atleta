@@ -7,7 +7,7 @@ const AboutUs = () => {
       <div className="container mx-auto">
         <div className="flex h-40 flex-col items-center">
           <Image
-            src="/logooficial.png"
+            src="/logooficial.jpeg"
             alt="logo"
             width={160}
             height={160}
