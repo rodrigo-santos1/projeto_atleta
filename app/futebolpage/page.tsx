@@ -19,7 +19,7 @@ import Footer from "@/components/footer/page";
 
 export default function ProductPage() {
   const router = useRouter();
-  const [category, setCategory] = useState<string>("todos");
+  const [category, setCategory] = useState<string[]>(["todos"]);
   const [subcategory, setSubcategory] = useState<string>("todos");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [sortBy, setSortBy] = useState<
@@ -28,6 +28,7 @@ export default function ProductPage() {
   const [isOrderMenuOpen, setIsOrderMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [favorites, setFavorites] = useState<string[]>([]);
+  
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -43,50 +44,29 @@ export default function ProductPage() {
   }, [isOrderMenuOpen]);
 
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const cart: { id: string; quantity: number }[] = JSON.parse(localStorage.getItem("cart") || "[]");
+  
     setCartCount(
-      cart.reduce((total: number, item: any) => total + item.quantity, 0),
+      cart.reduce((total, item) => total + item.quantity, 0),
     );
-
-    const storedFavorites = JSON.parse(
-      localStorage.getItem("favorites") || "[]",
-    );
+  
+    const storedFavorites: string[] = JSON.parse(localStorage.getItem("favorites") || "[]");
     setFavorites(storedFavorites);
   }, []);
 
-  const filteredProducts = products
-    .filter((product) => category === "todos" || product.category === category)
-    .filter(
-      (product) =>
-        subcategory === "todos" || product.subcategory === subcategory,
-    )
-    .filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()),
-    );
-
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy === "preço baixo") return a.price - b.price;
-    if (sortBy === "preço alto") return b.price - a.price;
-    return 0;
-  });
-
-  const categories = ["Masculino", "Feminino", "Infantil"];
-  const subcategories = ["Camisas", "Calçados", "Acessórios"];
-
   const addToCart = (product: Product) => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const existingProduct = cart.find((item: any) => item.id === product.id);
-
+    const cart: { id: string; quantity: number }[] = JSON.parse(localStorage.getItem("cart") || "[]");
+    
+    const existingProduct = cart.find((item) => item.id === product.id);
+  
     if (existingProduct) {
       existingProduct.quantity += 1;
     } else {
-      cart.push({ ...product, quantity: 1 });
+      cart.push({ id: product.id, quantity: 1 });
     }
-
+  
     localStorage.setItem("cart", JSON.stringify(cart));
-    setCartCount(
-      cart.reduce((total: number, item: any) => total + item.quantity, 0),
-    );
+    setCartCount(cart.reduce((total, item) => total + item.quantity, 0));
   };
 
   const toggleFavorite = (productId: string) => {
@@ -105,6 +85,26 @@ export default function ProductPage() {
   const goToFavorites = () => {
     router.push("/favorites");
   };
+
+  const sortedProducts = products
+    .filter((product) => {
+      const matchesCategory =
+        category.includes("todos") || category.includes(product.category);
+      const matchesSubcategory =
+        subcategory === "todos" || product.subcategory === subcategory;
+      const matchesSearchTerm =
+        searchTerm === "" ||
+        product.name.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesCategory && matchesSubcategory && matchesSearchTerm;
+    })
+    .sort((a, b) => {
+      if (sortBy === "preço baixo") {
+        return a.price - b.price;
+      } else if (sortBy === "preço alto") {
+        return b.price - a.price;
+      }
+      return 0; // Default: no sorting for "relevantes"
+    });
 
   return (
     <div className="min-h-screen bg-[#080F1A] text-[#39D5FF]">
@@ -169,41 +169,36 @@ export default function ProductPage() {
                 <li>
                   <button
                     onClick={() => {
-                      setCategory("todos");
+                      setCategory(["todos"]);
                       setSubcategory("todos");
                     }}
-                    className={`w-full rounded px-4 py-2 text-left text-lg ${category === "todos" ? "bg-[#39D5FF] text-[#1b402c]" : "hover:bg-[#2a5c40]"}`}
+                    className={`w-full rounded px-4 py-2 text-left text-lg ${category.includes("todos") ? "bg-[#39D5FF] text-[#1b402c]" : "hover:bg-[#2a5c40]"}`}
                   >
                     Todos
                   </button>
                 </li>
-                {categories.map((cat) => (
-                  <li key={cat}>
-                    <button
-                      onClick={() => {
-                        setCategory(cat);
-                        setSubcategory("todos");
-                      }}
-                      className={`w-full rounded px-4 py-2 text-left text-lg ${category === cat ? "bg-[#39D5FF] text-[#1b402c]" : "hover:bg-[#2a5c40]"}`}
-                    >
-                      {cat}
-                    </button>
-                    {category === cat && (
-                      <ul className="ml-4 mt-2 space-y-2">
-                        {subcategories.map((subcat) => (
-                          <li key={subcat}>
-                            <button
-                              onClick={() => setSubcategory(subcat)}
-                              className={`w-full rounded px-4 py-2 text-left text-lg ${subcategory === subcat ? "bg-[#39D5FF] text-[#1b402c]" : "hover:bg-[#2a5c40]"}`}
-                            >
-                              {subcat}
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
+                {category.map((cat) => (
+                <li key={cat}>
+                <button onClick={() => { setCategory([cat]); setSubcategory("todos"); }}>
+                {cat}
+                </button>
+                </li>
                 ))}
+const categories = ["todos", "camisas", "chuteiras", "bolas"]; // Exemplo
+
+<ul>
+  {category.map((cat) => (
+    <li key={cat}>
+      <button
+        onClick={() => setCategory([cat])}
+        className={category.includes(cat) ? "bg-[#39D5FF] text-[#1b402c]" : "hover:bg-[#2a5c40]"}
+      >
+        {cat}
+      </button>
+    </li>
+  ))}
+</ul>
+
               </ul>
             </div>
           </nav>

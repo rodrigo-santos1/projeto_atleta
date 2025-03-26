@@ -35,19 +35,21 @@ export default function CartPage() {
   const [cartCount, setCartCount] = useState(0);
   const [favoritesCount, setFavoritesCount] = useState(0);
   const [favorites, setFavorites] = useState<string[]>([]);
-
+  
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
     setCartItems(cart);
-    setCartCount(cart.reduce((total: any, item: { quantity: any; }) => total + item.quantity, 0));
-
-    const storedFavorites = JSON.parse(
-      localStorage.getItem("favorites") || "[]",
+    setCartCount(
+      cart.reduce((total: number, item: { quantity: number }) => total + item.quantity, 0)
+    );
+  
+    const storedFavorites: string[] = JSON.parse(
+      localStorage.getItem("favorites") || "[]"
     );
     setFavorites(storedFavorites);
     setFavoritesCount(storedFavorites.length);
   }, []);
-
+  
   const updateQuantity = (id: string, newQuantity: number) => {
     const updatedCart = cartItems
       .map((item) =>

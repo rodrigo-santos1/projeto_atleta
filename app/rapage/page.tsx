@@ -43,16 +43,19 @@ export default function ProductPage() {
   }, [isOrderMenuOpen]);
 
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    setCartCount(
-      cart.reduce((total: number, item: any) => total + item.quantity, 0),
+    const cart: Array<ARProduct & { quantity: number }> = JSON.parse(
+      localStorage.getItem("cart") || "[]"
     );
-
-    const storedFavorites = JSON.parse(
-      localStorage.getItem("favorites") || "[]",
+    setCartCount(
+      cart.reduce((total, item) => total + item.quantity, 0)
+    );
+  
+    const storedFavorites: string[] = JSON.parse(
+      localStorage.getItem("favorites") || "[]"
     );
     setFavorites(storedFavorites);
   }, []);
+  
 
   const filteredProducts = arProducts
     .filter((product) => category === "todos" || product.category === category)
@@ -79,19 +82,19 @@ export default function ProductPage() {
   ];
 
   const addToCart = (product: ARProduct) => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const existingProduct = cart.find((item: any) => item.id === product.id);
-
+    const cart: Array<ARProduct & { quantity: number }> = JSON.parse(
+      localStorage.getItem("cart") || "[]"
+    );
+    const existingProduct = cart.find((item) => item.id === product.id);
+  
     if (existingProduct) {
       existingProduct.quantity += 1;
     } else {
       cart.push({ ...product, quantity: 1 });
     }
-
+  
     localStorage.setItem("cart", JSON.stringify(cart));
-    setCartCount(
-      cart.reduce((total: number, item: any) => total + item.quantity, 0),
-    );
+    setCartCount(cart.reduce((total, item) => total + item.quantity, 0));
   };
 
   const toggleFavorite = (productId: string) => {

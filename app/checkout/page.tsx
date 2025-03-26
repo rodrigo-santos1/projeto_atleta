@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
 import Link from "next/link";
 import { Product } from "@/data/data";
-// import Image from 'next/image'
 
 interface CartItem extends Product {
   quantity: number;
@@ -23,27 +22,24 @@ export default function CheckoutPage() {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]") as CartItem[];
     setCartItems(cart);
     setCartCount(
-      cart.reduce((total: number, item: any) => total + item.quantity, 0),
+      cart.reduce((total: number, item: CartItem) => total + item.quantity, 0)
     );
 
-    const storedFavorites = JSON.parse(
-      localStorage.getItem("favorites") || "[]",
-    );
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites") || "[]") as Product[];
     setFavoritesCount(storedFavorites.length);
 
     const total = cart.reduce(
-      (total: number, item: any) => total + item.price * item.quantity,
-      0,
+      (total: number, item: CartItem) => total + item.price * item.quantity,
+      0
     );
     setTotalPrice(total);
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the order to a backend server
     console.log("Order submitted");
     localStorage.removeItem("cart");
     router.push("/order-confirmation");
@@ -66,53 +62,34 @@ export default function CheckoutPage() {
             <span className="text-white">Futebol</span>
           </Link>
           <div className="flex items-center space-x-4">
-            <Button
-              onClick={goToCart}
-              variant="outline"
-              className="m-0 mb-2 flex items-center justify-center rounded-2xl border-y-2 border-transparent bg-[#2a5c40] pl-3 pr-3 text-[#39D5FF] shadow-lg transition duration-300 hover:border-[#39D5FF] hover:bg-[#2D9BC7] hover:text-[#FFFFFF] hover:shadow-[#39d4ff2f]"
-            >
+            <Button onClick={goToCart} variant="outline">
               <ShoppingCart className="mr-2 h-4 w-4" />
               Carrinho ({cartCount})
             </Button>
-            <Button
-              onClick={goToFavorites}
-              variant="outline"
-              className="m-0 mb-2 flex items-center justify-center rounded-2xl border-y-2 border-transparent bg-[#2a5c40] pl-3 pr-3 text-[#39D5FF] shadow-lg transition duration-300 hover:border-[#39D5FF] hover:bg-[#2D9BC7] hover:text-[#FFFFFF] hover:shadow-[#39d4ff2f]"
-            >
+            <Button onClick={goToFavorites} variant="outline">
               <Heart className="mr-2 h-4 w-4" />
               Favoritos ({favoritesCount})
             </Button>
-            <Button
-              variant="outline"
-              className="m-0 mb-2 flex items-center justify-center rounded-2xl border-y-2 border-transparent bg-[#2a5c40] pl-3 pr-3 text-[#39D5FF] shadow-lg transition duration-300 hover:border-[#39D5FF] hover:bg-[#2D9BC7] hover:text-[#FFFFFF] hover:shadow-[#39d4ff2f]"
-            >
+            <Button variant="outline">
               <User className="mr-2 h-4 w-4" />
               Conta
             </Button>
           </div>
         </header>
 
-        <button
-          onClick={() => router.back()}
-          className="mb-6 inline-flex items-center text-[#39D5FF] transition duration-300 hover:text-white"
-        >
+        <button onClick={() => router.back()} className="mb-6 inline-flex items-center text-[#39D5FF]">
           <ArrowLeft className="mr-2 h-4 w-4" />
           Voltar
         </button>
 
         <div className="grid gap-6 md:grid-cols-2">
-          <Card className="rounded-lg border-y-2 border-transparent bg-[#2a5c40] text-[#39D5FF] shadow-lg transition duration-300 hover:shadow-[#39d4ff2f]">
+          <Card className="rounded-lg border-y-2 bg-[#2a5c40] text-[#39D5FF] shadow-lg">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold">
-                Resumo do Pedido
-              </CardTitle>
+              <CardTitle className="text-2xl font-bold">Resumo do Pedido</CardTitle>
             </CardHeader>
             <CardContent>
               {cartItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="mb-2 flex items-center justify-between"
-                >
+                <div key={item.id} className="mb-2 flex items-center justify-between">
                   <span>
                     {item.name} x {item.quantity}
                   </span>
@@ -125,50 +102,31 @@ export default function CheckoutPage() {
             </CardContent>
           </Card>
 
-          <Card className="rounded-lg border-y-2 border-transparent bg-[#2a5c40] text-[#39D5FF] shadow-lg transition duration-300 hover:shadow-[#39d4ff2f]">
+          <Card className="rounded-lg border-y-2 bg-[#2a5c40] text-[#39D5FF] shadow-lg">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold">
-                Informações de Entrega
-              </CardTitle>
+              <CardTitle className="text-2xl font-bold">Informações de Entrega</CardTitle>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <Label htmlFor="name">Nome Completo</Label>
-                  <Input
-                    id="name"
-                    required
-                    className="bg-[#1b402c] text-[#39D5FF]"
-                  />
+                  <Input id="name" required className="bg-[#1b402c] text-[#39D5FF]" />
                 </div>
                 <div>
                   <Label htmlFor="address">Endereço</Label>
-                  <Input
-                    id="address"
-                    required
-                    className="bg-[#1b402c] text-[#39D5FF]"
-                  />
+                  <Input id="address" required className="bg-[#1b402c] text-[#39D5FF]" />
                 </div>
                 <div>
                   <Label htmlFor="city">Cidade</Label>
-                  <Input
-                    id="city"
-                    required
-                    className="bg-[#1b402c] text-[#39D5FF]"
-                  />
+                  <Input id="city" required className="bg-[#1b402c] text-[#39D5FF]" />
                 </div>
                 <div>
                   <Label htmlFor="postalCode">CEP</Label>
-                  <Input
-                    id="postalCode"
-                    required
-                    className="bg-[#1b402c] text-[#39D5FF]"
-                  />
+                  <Input id="postalCode" required className="bg-[#1b402c] text-[#39D5FF]" />
                 </div>
                 <Link
-                  type="submit"
-                  href={"/pagamento"}
-                  className="m-0 flex w-full items-center justify-center rounded-2xl border-y-2 border-transparent bg-[#39D5FF] pl-3 pr-3 text-[#080F1A] shadow-lg transition duration-300 hover:border-[#39D5FF] hover:bg-[#2D9BC7] hover:text-[#FFFFFF] hover:shadow-[#39d4ff2f]"
+                  href="/pagamento"
+                  className="m-0 flex w-full items-center justify-center rounded-2xl bg-[#39D5FF] text-[#080F1A] shadow-lg transition duration-300 hover:bg-[#2D9BC7] hover:text-[#FFFFFF]"
                 >
                   Finalizar Compra
                 </Link>

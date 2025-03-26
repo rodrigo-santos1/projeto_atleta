@@ -22,40 +22,44 @@ import Link from "next/link";
 import Image from "next/image";
 import { products, Product } from "@/data/data";
 
+interface CartItem extends Product {
+  quantity: number;
+}
+
 export default function FavoritesPage() {
   const router = useRouter();
   const [favorites, setFavorites] = useState<Product[]>([]);
   const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
-    const storedFavorites = JSON.parse(
-      localStorage.getItem("favorites") || "[]",
+    const storedFavorites: string[] = JSON.parse(
+      localStorage.getItem("favorites") || "[]"
     );
     const favoriteProducts = products.filter((product) =>
-      storedFavorites.includes(product.id),
+      storedFavorites.includes(product.id)
     );
     setFavorites(favoriteProducts);
 
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
     setCartCount(
-      cart.reduce((total: number, item: any) => total + item.quantity, 0),
+      cart.reduce((total, item) => total + item.quantity, 0)
     );
   }, []);
 
   const removeFavorite = (productId: string) => {
     const updatedFavorites = favorites.filter(
-      (product) => product.id !== productId,
+      (product) => product.id !== productId
     );
     setFavorites(updatedFavorites);
     localStorage.setItem(
       "favorites",
-      JSON.stringify(updatedFavorites.map((product) => product.id)),
+      JSON.stringify(updatedFavorites.map((product) => product.id))
     );
   };
 
   const addToCart = (product: Product) => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const existingProduct = cart.find((item: any) => item.id === product.id);
+    const cart: CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+    const existingProduct = cart.find((item) => item.id === product.id);
 
     if (existingProduct) {
       existingProduct.quantity += 1;
@@ -64,9 +68,7 @@ export default function FavoritesPage() {
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-    setCartCount(
-      cart.reduce((total: number, item: any) => total + item.quantity, 0),
-    );
+    setCartCount(cart.reduce((total, item) => total + item.quantity, 0));
   };
 
   const goToCart = () => {
@@ -86,25 +88,15 @@ export default function FavoritesPage() {
             <span className="text-white">Futebol</span>
           </Link>
           <div className="flex items-center space-x-4">
-            <Button
-              onClick={goToCart}
-              variant="outline"
-              className="m-0 mb-2 flex items-center justify-center rounded-2xl border-y-2 border-transparent bg-[#2a5c40] pl-3 pr-3 text-[#39D5FF] shadow-lg transition duration-300 hover:border-[#39D5FF] hover:bg-[#2D9BC7] hover:text-[#FFFFFF] hover:shadow-[#39d4ff2f]"
-            >
+            <Button onClick={goToCart} variant="outline">
               <ShoppingCart className="mr-2 h-4 w-4" />
               Carrinho ({cartCount})
             </Button>
-            <Button
-              variant="outline"
-              className="m-0 mb-2 flex items-center justify-center rounded-2xl border-y-2 border-transparent bg-[#2a5c40] pl-3 pr-3 text-[#39D5FF] shadow-lg transition duration-300 hover:border-[#39D5FF] hover:bg-[#2D9BC7] hover:text-[#FFFFFF] hover:shadow-[#39d4ff2f]"
-            >
+            <Button variant="outline">
               <Heart className="mr-2 h-4 w-4" fill="#39D5FF" />
               Favoritos ({favorites.length})
             </Button>
-            <Button
-              variant="outline"
-              className="m-0 mb-2 flex items-center justify-center rounded-2xl border-y-2 border-transparent bg-[#2a5c40] pl-3 pr-3 text-[#39D5FF] shadow-lg transition duration-300 hover:border-[#39D5FF] hover:bg-[#2D9BC7] hover:text-[#FFFFFF] hover:shadow-[#39d4ff2f]"
-            >
+            <Button variant="outline">
               <User className="mr-2 h-4 w-4" />
               Conta
             </Button>
@@ -119,7 +111,7 @@ export default function FavoritesPage() {
           Voltar
         </button>
 
-        <Card className="rounded-lg border-y-2 border-transparent bg-[#2a5c40] text-[#39D5FF] shadow-lg transition duration-300 hover:shadow-[#39d4ff2f]">
+        <Card>
           <CardHeader>
             <CardTitle className="text-2xl font-bold">Seus Favoritos</CardTitle>
           </CardHeader>
@@ -129,10 +121,7 @@ export default function FavoritesPage() {
             ) : (
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {favorites.map((product) => (
-                  <Card
-                    key={product.id}
-                    className="m-0 mb-2 rounded-md border-y-2 border-transparent bg-[#2a5c40] text-[#39D5FF] shadow-lg transition duration-300 hover:border-[#39D5FF] hover:text-[#FFFFFF] hover:shadow-[#39d4ff2f]"
-                  >
+                  <Card key={product.id} className="m-0 mb-2">
                     <CardHeader>
                       <CardTitle>{product.name}</CardTitle>
                     </CardHeader>
@@ -144,7 +133,6 @@ export default function FavoritesPage() {
                             alt={product.name}
                             width={300}
                             height={300}
-                            objectFit="cover"
                             className="mb-4 rounded-lg"
                             style={{ width: "300px", height: "300px" }}
                           />
@@ -158,7 +146,6 @@ export default function FavoritesPage() {
                     <CardFooter className="flex justify-between">
                       <Button
                         variant="outline"
-                        className="rounded-2xl border-[#39D5FF] bg-[#2a5c40] text-[#39D5FF] hover:bg-[#39D5FF] hover:text-[#FFFFFF]"
                         onClick={() => addToCart(product)}
                       >
                         <ShoppingCart className="mr-2 h-4 w-4" />
@@ -166,7 +153,6 @@ export default function FavoritesPage() {
                       </Button>
                       <Button
                         variant="outline"
-                        className="rounded-full border-[#39D5FF] bg-[#2a5c40] p-2 text-[#39D5FF] hover:bg-[#39D5FF] hover:text-[#FFFFFF]"
                         onClick={() => removeFavorite(product.id)}
                       >
                         <Trash2 className="h-4 w-4" />
@@ -178,12 +164,7 @@ export default function FavoritesPage() {
             )}
             {favorites.length > 0 && (
               <div className="mt-6 flex justify-end">
-                <Button
-                  onClick={goToCheckout}
-                  className="m-0 flex items-center justify-center rounded-2xl border-y-2 border-transparent bg-[#39D5FF] pl-3 pr-3 text-[#080F1A] shadow-lg transition duration-300 hover:border-[#39D5FF] hover:bg-[#2D9BC7] hover:text-[#FFFFFF] hover:shadow-[#39d4ff2f]"
-                >
-                  Finalizar Compra
-                </Button>
+                <Button onClick={goToCheckout}>Finalizar Compra</Button>
               </div>
             )}
           </CardContent>

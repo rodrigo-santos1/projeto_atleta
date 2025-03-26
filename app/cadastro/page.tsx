@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import "./style.css"; // Importando o CSS
 
 interface FormData {
   username: string;
@@ -53,16 +54,69 @@ const Page: React.FC = () => {
     e.preventDefault();
 
     if (validateForm()) {
-      // Se não houver erros, envia os dados
       console.log("Dados enviados:", formData);
-      // Aqui você pode fazer a lógica de envio do formulário, como uma chamada de API ou algo similar.
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* ...seus campos de formulário aqui... */}
-    </form>
+    <div className="form-background">
+      <div className="form-container">
+        <form onSubmit={handleSubmit}>
+          <div className="form-row">
+            <div>
+              <label>Nome:</label>
+              <input type="text" name="username" value={formData.username} onChange={handleChange} />
+              {formErrors.username && <p style={{ color: "red" }}>{formErrors.username}</p>}
+            </div>
+            <div>
+              <label>Email:</label>
+              <input type="email" name="email" value={formData.email} onChange={handleChange} />
+              {formErrors.email && <p style={{ color: "red" }}>{formErrors.email}</p>}
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div>
+              <label>Senha:</label>
+              <input type="password" name="password" value={formData.password} onChange={handleChange} />
+              {formErrors.password && <p style={{ color: "red" }}>{formErrors.password}</p>}
+            </div>
+            <div>
+              <label>Confirmar Senha:</label>
+              <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
+              {formErrors.confirmPassword && <p style={{ color: "red" }}>{formErrors.confirmPassword}</p>}
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div>
+              <label>DDD:</label>
+              <input type="text" name="ddd" value={formData.ddd} onChange={handleChange} />
+              {formErrors.ddd && <p style={{ color: "red" }}>{formErrors.ddd}</p>}
+            </div>
+            <div>
+              <label>Data de Nascimento:</label>
+              <input type="date" name="birthDate" value={formData.birthDate} onChange={handleChange} />
+              {formErrors.birthDate && <p style={{ color: "red" }}>{formErrors.birthDate}</p>}
+            </div>
+          </div>
+
+          <div>
+            <label>Endereço:</label>
+            <input type="text" name="address" value={formData.address} onChange={handleChange} />
+            {formErrors.address && <p style={{ color: "red" }}>{formErrors.address}</p>}
+          </div>
+
+          <div>
+            <label>CEP:</label>
+            <input type="text" name="cep" value={formData.cep} onChange={handleChange} />
+            {formErrors.cep && <p style={{ color: "red" }}>{formErrors.cep}</p>}
+          </div>
+
+          <button type="submit" className="custom-button">Enviar</button>
+        </form>
+      </div>
+    </div>
   );
 };
 
