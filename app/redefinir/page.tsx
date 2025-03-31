@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import "./style.css"; // Importa o CSS
 import Link from "next/link";
 import Image from "next/image";
@@ -11,12 +11,12 @@ const ResetPasswordPage = () => {
     confirmPassword: "",
   });
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formData.newPassword !== formData.confirmPassword) {
       alert("As senhas não coincidem!");
@@ -33,7 +33,7 @@ const ResetPasswordPage = () => {
         className="form-container w-96 rounded-3xl bg-gray-900 p-8"
       >
         <div className="flex flex-col items-center">
-          <Image src="/logooficial.png" alt="" width={150} height={150} />
+          <Image src="/logooficial.png" alt="Logo" width={150} height={150} />
           <h2 className="mb-3 mt-4 text-center text-2xl text-[#39d5ff]">
             Redefinir Senha
           </h2>
@@ -62,16 +62,10 @@ const ResetPasswordPage = () => {
             />
           </div>
         </div>
-        <button
-          type="submit"
-          className=" w-full menu-li py-2"
-        >
+        <button type="submit" className="w-full menu-li py-2">
           Redefinir Senha
         </button>
-        <Link
-          href={"/login"}
-          className=" w-full menu-li py-2 "
-        >
+        <Link href={"/login"} className="w-full menu-li py-2">
           Voltar para Login
         </Link>
       </form>
