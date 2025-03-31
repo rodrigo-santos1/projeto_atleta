@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+import Image from "next/image";
 
 export function BannerPrincipal() {
   const images: string[] = [
@@ -33,11 +34,14 @@ export function BannerPrincipal() {
               <div className="h-full w-full p-1">
                 <Card className="h-full w-full bg-transparent">
                   <CardContent className="flex h-full w-full items-center justify-center bg-transparent p-0">
-                    <img
-                      src={src}
-                      alt={`Image ${index + 1}`}
-                      className="h-full w-full rounded-lg object-cover"
-                    />
+                    
+                <Image
+                  src={src}
+                  alt={`Image ${index + 1}`}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-lg"
+                />
                   </CardContent>
                 </Card>
               </div>

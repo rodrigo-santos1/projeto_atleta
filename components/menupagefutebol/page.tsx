@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 
 const MenuPageFutebol = () => {
   // Estado para gerenciar a categoria selecionada e o submenu
