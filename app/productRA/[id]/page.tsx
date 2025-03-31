@@ -40,7 +40,7 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    setCartCount(cart.reduce((total: any, item: { quantity: any; }) => total + item.quantity, 0));
+    setCartCount(cart.reduce((total: number, item: { quantity: number }) => total + item.quantity, 0));
   }, []);
 
   const increaseQuantity = () => setQuantity((prev) => prev + 1);
@@ -50,7 +50,7 @@ export default function ProductDetailPage() {
   const addToCart = () => {
     if (product) {
       const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-      const existingProduct = cart.find((item: { id: string; }) => item.id === product.id);
+      const existingProduct = cart.find((item: ARProduct) => item.id === product.id);
 
       if (existingProduct) {
         existingProduct.quantity += quantity;
@@ -59,7 +59,7 @@ export default function ProductDetailPage() {
       }
 
       localStorage.setItem("cart", JSON.stringify(cart));
-      setCartCount(cart.reduce((total: any, item: { quantity: any; }) => total + item.quantity, 0));
+      setCartCount(cart.reduce((total: number, item: { quantity: number }) => total + item.quantity, 0));
     }
   };
 
