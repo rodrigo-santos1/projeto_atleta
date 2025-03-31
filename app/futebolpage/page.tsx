@@ -184,7 +184,6 @@ export default function ProductPage() {
                 </button>
                 </li>
                 ))}
-const categories = ["todos", "camisas", "chuteiras", "bolas"]; // Exemplo
 
 <ul>
   {category.map((cat) => (
