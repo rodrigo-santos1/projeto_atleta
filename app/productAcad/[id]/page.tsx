@@ -8,22 +8,16 @@ import {
   User,
   Home,
   ArrowLeft,
-  Plus,
-  Minus,
-  Star,
 } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
-import Image from "next/image";
 import { Product, products } from "@/data/data";
 
 export default function ProductDetailPage() {
   const params = useParams();
   const router = useRouter();
   const [product, setProduct] = useState<Product | undefined>(undefined);
-  const [quantity, setQuantity] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [cartCount, setCartCount] = useState<number>(0);
   const [favoritesCount, setFavoritesCount] = useState<number>(0);
@@ -42,25 +36,6 @@ export default function ProductDetailPage() {
     const cart: { id: string; quantity: number }[] = JSON.parse(localStorage.getItem("cart") || "[]");
     setCartCount(cart.reduce((total, item) => total + item.quantity, 0));
   }, []);
-
-  const increaseQuantity = () => setQuantity((prev) => prev + 1);
-  const decreaseQuantity = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
-
-  const addToCart = () => {
-    if (product) {
-      const cart: { id: string; quantity: number }[] = JSON.parse(localStorage.getItem("cart") || "[]");
-      const existingProduct = cart.find((item) => item.id === product.id);
-
-      if (existingProduct) {
-        existingProduct.quantity += quantity;
-      } else {
-        cart.push({ ...product, quantity });
-      }
-
-      localStorage.setItem("cart", JSON.stringify(cart));
-      setCartCount(cart.reduce((total, item) => total + item.quantity, 0));
-    }
-  };
 
   const toggleFavorite = () => {
     setFavoritesCount((prev) => prev + 1);
