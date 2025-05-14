@@ -7,7 +7,7 @@ const LoginPage = () => {
       <div className="flex min-h-screen items-center justify-center bg-black">
         <div className="w-96 rounded-3xl bg-gray-900 p-8">
           <div className="flex flex-col items-center">
-            <Image src="/logooficial.png" alt="" width={150} height={150} />
+            <Image src="/logooficial.jpeg" alt="" width={150} height={150} unoptimized />
             <h2 className="mb-3 mt-4 text-center text-3xl text-[#39d5ff]">
               Faça seu login
             </h2>
@@ -35,9 +35,12 @@ const LoginPage = () => {
               </Link>
             </div>
             <div>
-              <Link className="menu-li w-full mt-4 py-2" type="submit" href={"/"}>
-                Entrar
-              </Link>
+                <Link
+                  href={"/qualvocee"}
+                  className="menu-li w-full mt-4 py-2 text-white bg-[#39d5ff] rounded-3xl hover:bg-[#2bb3cc] transition-colors block text-center"
+                >
+                  Entrar
+                </Link>
             </div>
             <div className="row ">
             <Link

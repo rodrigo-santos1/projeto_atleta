@@ -47,7 +47,7 @@ const Menu = () => {
           <SearchIcon className="absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-white" />
         </div>
         <Link href={"/login"} className="menu-li">
-          Entrar
+          Logar
         </Link>
       </div>
     </nav>
