@@ -33,7 +33,7 @@ const ResetPasswordPage = () => {
         className="form-container w-96 rounded-3xl bg-gray-900 p-8"
       >
         <div className="flex flex-col items-center">
-          <Image src="/logooficial.png" alt="Logo" width={150} height={150} />
+          <Image src="/logooficial.jpeg" alt="Logo" width={150} height={150} />
           <h2 className="mb-3 mt-4 text-center text-2xl text-[#39d5ff]">
             Redefinir Senha
           </h2>
