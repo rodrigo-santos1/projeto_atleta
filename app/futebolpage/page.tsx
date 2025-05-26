@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { products, Product } from "@/data/data";
+import { products, Product } from "@/data/academia.ts/data"; // Certifique-se de que o caminho do seu arquivo está correto
 import { Heart, ShoppingCart, User, Home } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -19,7 +19,7 @@ import Footer from "@/components/footer/page";
 
 export default function ProductPage() {
   const router = useRouter();
-  const [category, setCategory] = useState<string[]>(["todos"]);
+  const [category, setCategory] = useState<string>("todos");
   const [subcategory, setSubcategory] = useState<string>("todos");
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [sortBy, setSortBy] = useState<
@@ -28,7 +28,6 @@ export default function ProductPage() {
   const [isOrderMenuOpen, setIsOrderMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [favorites, setFavorites] = useState<string[]>([]);
-  
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -44,29 +43,49 @@ export default function ProductPage() {
   }, [isOrderMenuOpen]);
 
   useEffect(() => {
-    const cart: { id: string; quantity: number }[] = JSON.parse(localStorage.getItem("cart") || "[]");
-  
-    setCartCount(
-      cart.reduce((total, item) => total + item.quantity, 0),
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]") as Array<Product & { quantity: number }>;
+    setCartCount(cart.reduce((total, item) => total + item.quantity, 0));
+    
+
+    const storedFavorites = JSON.parse(
+      localStorage.getItem("favorites") || "[]",
     );
-  
-    const storedFavorites: string[] = JSON.parse(localStorage.getItem("favorites") || "[]");
     setFavorites(storedFavorites);
   }, []);
 
+  const filteredProducts = products
+    .filter((product) => category === "todos" || product.category === category)
+    .filter(
+      (product) =>
+        subcategory === "todos" || product.subcategory === subcategory,
+    )
+    .filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortBy === "preço baixo") return a.price - b.price;
+    if (sortBy === "preço alto") return b.price - a.price;
+    return 0;
+  });
+
+  const categories = ["Masculino", "Feminino", "Infantil"];
+  const subcategories = ["Camisas", "Calçados", "Acessórios"];
+
   const addToCart = (product: Product) => {
-    const cart: { id: string; quantity: number }[] = JSON.parse(localStorage.getItem("cart") || "[]");
+    const cart: Array<Product & { quantity: number }> = JSON.parse(localStorage.getItem("cart") || "[]");
+    const existingProduct = cart.find((item: Product & { quantity: number }) => item.id === product.id);
     
-    const existingProduct = cart.find((item) => item.id === product.id);
-  
+
     if (existingProduct) {
       existingProduct.quantity += 1;
     } else {
-      cart.push({ id: product.id, quantity: 1 });
+      cart.push({ ...product, quantity: 1 });
     }
-  
+
     localStorage.setItem("cart", JSON.stringify(cart));
     setCartCount(cart.reduce((total, item) => total + item.quantity, 0));
+
   };
 
   const toggleFavorite = (productId: string) => {
@@ -86,32 +105,12 @@ export default function ProductPage() {
     router.push("/favorites");
   };
 
-  const sortedProducts = products
-    .filter((product) => {
-      const matchesCategory =
-        category.includes("todos") || category.includes(product.category);
-      const matchesSubcategory =
-        subcategory === "todos" || product.subcategory === subcategory;
-      const matchesSearchTerm =
-        searchTerm === "" ||
-        product.name.toLowerCase().includes(searchTerm.toLowerCase());
-      return matchesCategory && matchesSubcategory && matchesSearchTerm;
-    })
-    .sort((a, b) => {
-      if (sortBy === "preço baixo") {
-        return a.price - b.price;
-      } else if (sortBy === "preço alto") {
-        return b.price - a.price;
-      }
-      return 0; // Default: no sorting for "relevantes"
-    });
-
   return (
     <div className="min-h-screen bg-[#080F1A] text-[#39D5FF]">
       <div
         className="mb-6 flex h-[450px] w-full items-center justify-center bg-[#2a5c40]"
         style={{
-          backgroundImage: "url('/assets/futebol.jpg')",
+          backgroundImage: "url('/assets/ac01.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -169,35 +168,41 @@ export default function ProductPage() {
                 <li>
                   <button
                     onClick={() => {
-                      setCategory(["todos"]);
+                      setCategory("todos");
                       setSubcategory("todos");
                     }}
-                    className={`w-full rounded px-4 py-2 text-left text-lg ${category.includes("todos") ? "bg-[#39D5FF] text-[#1b402c]" : "hover:bg-[#2a5c40]"}`}
+                    className={`w-full rounded px-4 py-2 text-left text-lg ${category === "todos" ? "bg-[#39D5FF] text-[#1b402c]" : "hover:bg-[#2a5c40]"}`}
                   >
                     Todos
                   </button>
                 </li>
-                {category.map((cat) => (
-                <li key={cat}>
-                <button onClick={() => { setCategory([cat]); setSubcategory("todos"); }}>
-                {cat}
-                </button>
-                </li>
+                {categories.map((cat) => (
+                  <li key={cat}>
+                    <button
+                      onClick={() => {
+                        setCategory(cat);
+                        setSubcategory("todos");
+                      }}
+                      className={`w-full rounded px-4 py-2 text-left text-lg ${category === cat ? "bg-[#39D5FF] text-[#1b402c]" : "hover:bg-[#2a5c40]"}`}
+                    >
+                      {cat}
+                    </button>
+                    {category === cat && (
+                      <ul className="ml-4 mt-2 space-y-2">
+                        {subcategories.map((subcat) => (
+                          <li key={subcat}>
+                            <button
+                              onClick={() => setSubcategory(subcat)}
+                              className={`w-full rounded px-4 py-2 text-left text-lg ${subcategory === subcat ? "bg-[#39D5FF] text-[#1b402c]" : "hover:bg-[#2a5c40]"}`}
+                            >
+                              {subcat}
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
                 ))}
-
-<ul>
-  {category.map((cat) => (
-    <li key={cat}>
-      <button
-        onClick={() => setCategory([cat])}
-        className={category.includes(cat) ? "bg-[#39D5FF] text-[#1b402c]" : "hover:bg-[#2a5c40]"}
-      >
-        {cat}
-      </button>
-    </li>
-  ))}
-</ul>
-
               </ul>
             </div>
           </nav>
@@ -265,7 +270,7 @@ export default function ProductPage() {
                           height={300}
                           objectFit="cover"
                           className="mb-4 rounded-lg"
-                          style={{ width: "300px", height: "300px" }} // Adicionando estilo fixo
+                          style={{ width: "300px", height: "300px" }}
                         />
                         <Button
                           variant="outline"
